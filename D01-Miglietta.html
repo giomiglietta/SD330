@@ -1,229 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>The Fridglietta</title>
-
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Tilt+Warp"
-    />
-
+    <title>D01-Miglietta</title>
     <style>
-      html {
-        background-color: #413a44;
-        font-family: "Tilt Warp", sans-serif;
-        letter-spacing: 2px;
-      }
-
-      .box-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 20px;
-        text-align: center;
-        margin: 0 auto;
-        width: 50%;
-      }
-
-      .box-column {
-        flex-basis: 50%;
-        transition: transform 0.2s ease;
-      }
-
-      .box-column:hover {
-        transform: scale(1.1);
-      }
-
       .box {
-        background-color: #4a4343;
-        border-radius: 10px;
-        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-        margin: 0 auto;
-        text-align: center;
+        width: 500px;
+        height: 250px;
+        display: inline-table;
+        margin: 10px;
+        font-size: 18px;
       }
-
-      .main {
-        margin: 25px 25px 25px 25px;
+      .box:nth-child(odd) {
+        background-color: #ffffff;
       }
-
+      .box:nth-child(even) {
+        background-color: #f2f2eb;
+      }
       h1 {
         text-align: center;
       }
-
-      #temperature {
-        padding: 15px;
-        align-items: center;
-        text-align: center;
-      }
-
-      #snowflake {
-        text-align: center;
-        width: 50px;
-        height: auto;
-        padding-top: 23px;
-      }
-
-      #food {
-        width: 400px;
-        height: auto;
-      }
-
-      #firefox {
-        padding-top: 15px;
-        width: 75px;
-        height: auto;
-      }
-
-      #youtube {
-        height: 125px;
-        width: auto;
-      }
-
-      #home {
-        transition: transform 0.2s ease;
-      }
-
-      #home:hover {
-        transform: scale(1.1);
-      }
-
-      #notepad {
-        padding-top: 15px;
-        width: 75px;
-        height: auto;
-      }
-
-      #power {
-        padding-top: 20px;
-        width: 75px;
-        height: 75px;
+      .organize {
+        display: table;
       }
     </style>
-    <script>
-      var note = "Write Your Groceries Here!";
-      var power = false;
-
-      function startClock() {
-        setInterval(clockTick, 1000);
-      }
-
-      function clockTick() {
-        var date = new Date();
-        var time =
-          date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-        document.getElementById("clock").textContent = `Current Time: ${time}`;
-      }
-
-      function pressButton(button) {
-        if (button == "youtube") {
-          document.getElementsByClassName(
-            "box"
-          )[0].innerHTML = `<div style="text-align:center; padding: 10px">
-              <h2 style="font-size: 50px;">Youtube</h2>
-              <img style="max-width: 95%; max-height: 100%; margin: 15px;" src="https://1.bp.blogspot.com/-RP5m-XGk7aU/Xd-ailWVZnI/AAAAAAAAKgo/gC24DrIKNEY1DutP3bR7TqfcqNY-SCp4gCLcBGAsYHQ/s1600/youtube-home-page-c.jpg">
-              </div>
-              <div style="text-align:center; padding: 10px">
-              <img id="home" onclick="goHome()" style="height: 80px; width: auto" src="https://cdn-icons-png.flaticon.com/512/25/25694.png">
-              </div>`;
-        } else if (button == "firefox") {
-          document.getElementsByClassName(
-            "box"
-          )[0].innerHTML = `<div style="text-align:center; padding: 10px">
-              <h2 style="font-size: 50px;">FireFox</h2>
-              <img style="max-width: 95%; max-height: 100%; margin: 15px;" src="https://assets-prod.sumo.prod.webservices.mozgcp.net/media/uploads/gallery/images/2021-08-11-16-35-39-7b5bb7.png">
-              </div>
-              <div style="text-align:center; padding: 10px">
-              <img id="home" onclick="goHome()" style="height: 80px; width: auto" src="https://cdn-icons-png.flaticon.com/512/25/25694.png">
-              </div>`;
-        } else if (button == "notepad") {
-          document.getElementsByClassName("box")[0].innerHTML = `<div>
-          <div style="text-align:center; padding: 10px">
-              <h2 style="font-size: 50px;">NotePad</h2>
-              <textarea style="max-width: 100%"id="padinfo" rows="4" cols="100">${note}</textarea>
-              <br>
-              <input onclick="saveNote()" type="submit" value="Save">
-              <input onclick="deleteNote()" type="submit" value="Delete All">
-              <div style="text-align:center; padding: 10px">
-              <img id="home" onclick="goHome()" style="height: 80px; width: auto" src="https://cdn-icons-png.flaticon.com/512/25/25694.png">
-              </div>`;
-        } else if (button == "power") {
-          if (power) {
-            document.getElementsByClassName("box")[0].innerHTML = `<img
-            id="power"
-            onclick="pressButton(this.id)"
-            style="margin-bottom: 10px"
-            src="https://cdn-icons-png.flaticon.com/512/92/92961.png"
-            />`;
-            document.getElementsByTagName("html")[0].style.backgroundColor =
-              "#413a44";
-            document.getElementsByClassName("box")[0].style.backgroundColor =
-              "#4a4343";
-            power = false;
-          } else {
-            document.getElementsByTagName("html")[0].style.backgroundColor =
-              "#dfbcf5";
-            document.getElementsByClassName("box")[0].style.backgroundColor =
-              "white";
-            power = true;
-            goHome();
-          }
-        }
-      }
-
-      function saveNote() {
-        note = document.getElementById("padinfo").value;
-      }
-
-      function deleteNote() {
-        document.getElementById("padinfo").value = "Deleted Everything!";
-        note = "Write Your Groceries Here!";
-      }
-
-      function goHome() {
-        document.getElementsByClassName(
-          "box"
-        )[0].innerHTML = `<div onload="startClock()" id="temperature">
-          <img
-          id="snowflake"
-          src="data:image/png;base64,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"
-          />
-          <h2 id="current">Current Temperature: 39 &#8457</h2>
-          <h3 id="clock">Current Time: 00:00:00</h3>
-          <img id="food" src="https://aptokash.github.io/SD330/06-fridge.jpg">
-          </div>
-          <div class="box-container">
-          <div class="box-column">
-            <img id="power" onclick="pressButton(this.id)" src="https://static.vecteezy.com/system/resources/previews/004/924/688/original/power-icon-isolated-on-white-background-on-off-button-illustration-free-vector.jpg">
-          </div>
-          <div class="box-column">
-          <img id="firefox" onclick="pressButton(this.id)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/1200px-Firefox_logo%2C_2019.svg.png">
-          </div>
-          <div class="box-column">
-          <img id="youtube" onclick="pressButton(this.id)" src="https://cdn.mos.cms.futurecdn.net/8gzcr6RpGStvZFA2qRt4v6.jpg">
-          </div>
-          <div class="box-column">
-          <img id="notepad" onclick="pressButton(this.id)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Icon-notepad.svg/1024px-Icon-notepad.svg.png">
-          </div>
-          </div>`;
-      }
-    </script>
   </head>
-
-  <body onload="startClock()">
-    <h1>The Fridglietta</h1>
-    <div class="main">
+  <body>
+    <h1>D01-Miglietta</h1>
+    <div class="organize">
       <div class="box">
-        <img
-          id="power"
-          onclick="pressButton(this.id)"
-          style="margin-bottom: 10px"
-          src="https://cdn-icons-png.flaticon.com/512/92/92961.png"
-        />
+        <h1>Usability</h1>
+        <ul>
+          <li>Know the user you are designing for</li>
+          <li>Observe reactions to the system</li>
+          <li>Fix problems as they are found</li>
+          <li>Consider physical or mental limitations for the user</li>
+          <li>
+            Be usable (effective, efficient, safe, good utility, easy to learn
+            and remember)
+          </li>
+        </ul>
+      </div>
+      <div class="box">
+        <h1>Basic Design Principles</h1>
+        <ul>
+          <li>User should recieve feedback from input</li>
+          <li>
+            Restrict the user interaction that can take place in certain moments
+          </li>
+          <li>Interfaces should be consistent through system</li>
+          <li>Develop buttons and features that allow affordance</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h1>Interaction Design</h1>
+        <ul>
+          <li>Design alternatives</li>
+          <li>Develop prototypes for testing</li>
+          <li>Interfaces should be consistent through system</li>
+          <li>Evaluating the effectiveness of your product</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h1>Cognitive Design</h1>
+        <ul>
+          <li>
+            Demonstrate to user how to interact with system (instructing,
+            conversing, etc)
+          </li>
+          <li>Ask the right questions to help design teams</li>
+          <li>
+            Be aware of how the user will think about the system(experiential vs
+            reflective)
+          </li>
+          <li>
+            Structure information in a way that makes it effective and easy to
+            read
+          </li>
+        </ul>
+      </div>
+      <div class="box">
+        <h1>Design implications</h1>
+        <ul>
+          <li>Consider context</li>
+          <li>Avoid cluttering of visual interfaces</li>
+          <li>Use separators and white space to separate information</li>
+          <li>Design icons to make it easily readable</li>
+          <li>
+            Use different sound effects to distinguish between different actions
+          </li>
+          <li>Make the system easy to remember.</li>
+          <li>
+            Use expressive interfaces to let the user know what is going on
+          </li>
+        </ul>
+      </div>
+      <div class="box">
+        <h1>Easy of use Design</h1>
+        <ul>
+          <li>Reduce cognitive load by making processes simple</li>
+          <li>Promote recognition</li>
+          <li>Allow users to easily label and organize to their liking</li>
+          <li>Create clear and easy to follow instructions</li>
+          <li>Have appropriate online help and tutorials</li>
+          <li>Let the user discover what options are available</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h1>Cultural Considerations</h1>
+        <ul>
+          <li>Some society read from right to left</li>
+          <li>
+            Some societies like websites that are more cluttered compared to
+            others
+          </li>
+          <li>
+            Some words, sayings or symbols may be offensive in certain cultures
+          </li>
+        </ul>
       </div>
     </div>
+    <footer>
+      <hr />
+      <small> © Maurizio Miglietta March 20, 2022</small>
+    </footer>
   </body>
-  <footer>
-    <hr />
-    <small>© Maurizio Miglietta March 10, 2022</small>
-  </footer>
 </html>
+
