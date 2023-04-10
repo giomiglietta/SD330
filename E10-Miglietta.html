@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>The Fridglietta</title>
+
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Tilt+Warp"
+    />
+
+    <style>
+      html {
+        background-color: #413a44;
+        font-family: "Tilt Warp", sans-serif;
+        letter-spacing: 2px;
+        min-width: 635px;
+      }
+
+      .box-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px;
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .box-column {
+        flex-basis: 50%;
+        transition: transform 0.2s ease;
+      }
+
+      .box-column:hover {
+        transform: scale(1.1);
+      }
+
+      .box {
+        background-color: #4a4343;
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .main {
+        margin: 25px 25px 25px 25px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      #temperature {
+        align-items: center;
+        text-align: center;
+      }
+
+      #snowflake {
+        text-align: center;
+        width: 50px;
+        height: auto;
+        padding-top: 23px;
+      }
+
+      #food {
+        width: 400px;
+        height: auto;
+      }
+
+      #firefox {
+        padding-top: 15px;
+        width: 75px;
+        height: auto;
+      }
+
+      #youtube {
+        height: 100px;
+        width: auto;
+      }
+
+      #home {
+        transition: transform 0.2s ease;
+      }
+
+      #home:hover {
+        transform: scale(1.1);
+      }
+
+      #notepad {
+        padding-top: 15px;
+        width: 75px;
+        height: auto;
+      }
+
+      #tv {
+        padding-top: 20px;
+        width: 75px;
+        height: 75px;
+      }
+
+      #power {
+        padding-top: 20px;
+        width: 75px;
+        height: 75px;
+      }
+
+      #plus, #minus, #current {
+        display: inline-block;
+      }
+
+      #plus, #minus {
+       transform: translateY(-4px)
+      }
+
+      #timer {
+        transform: translateY(20px);
+        width: 75px;
+        height: 75px;
+      }
+
+      #number-text {
+        font-size: 50px;
+
+      }
+
+      
+        
+    </style>
+    <script>
+      var note = "Eggs \nBacon \nBread \nChicken \nRedbull";
+      var power = false;
+      var militaryTime = true;
+      var clockTimer;
+      var tvOn = false;
+      var food = true;
+      var temperatureInF = Math.floor(Math.random() * (Math.floor(45) - Math.ceil(33) + 1) + Math.ceil(33));  
+      var temperatureInC = Math.round((temperatureInF- 32) * (5/9)).toFixed(1)
+      var fC = true;
+      var timerOn = false;
+
+      function timer() {
+        if (timerOn == true) {
+            return;
+        }
+        var minutes;
+        var seconds;
+
+        var time = document.getElementById("timer-number").value;
+
+        var timeLimit = 60 * 1000 * time
+        var start = Date.now();
+
+        function timerTick (){
+            var timeElapsed = Date.now() - start;
+            var timeRemaining = timeLimit - timeElapsed;
+            if (timeRemaining > 0) {
+                var secondsRemaining = Math.ceil(timeRemaining / 1000)
+
+                minutes = Math.floor(secondsRemaining / 60)
+                seconds = secondsRemaining % 60;
+                document.getElementById("number-text").innerHTML = minutes + ":"+ seconds
+            } else {
+                clearInterval(timerSet)
+                var bell = new Audio("../soundfiles/bell.mp3");
+                bell.play();
+                document.getElementById("number-text").innerHTML = ""
+                timerOn = false;
+            }
+        } 
+
+        var timerSet = setInterval(timerTick, 1000)
+        timerOn = true;
+    }
+
+      function startClock() {
+        clockTimer = setInterval(clockTick, 1000);
+      }
+
+      function increaseTemperature() {
+        if (temperatureInF > 44 ) {
+            return;
+        }
+        temperatureInF += 1;
+        temperatureInC = Math.round((temperatureInF- 32) * (5/9)).toFixed(1);
+        if (fC == false) {
+            document.getElementById("current").innerHTML = `Current Temperature: ${temperatureInF} &#8457`
+        } else {
+            document.getElementById("current").innerHTML = `Current Temperature: ${temperatureInC} &#8451`
+        }
+      }
+
+      function decreaseTemperature() {
+        if (temperatureInF < 34) {
+            return;
+        }
+        temperatureInF -= 1;
+        temperatureInC = Math.round((temperatureInF- 32) * (5/9)).toFixed(1);
+        if (fC == false) {
+            document.getElementById("current").innerHTML = `Current Temperature: ${temperatureInF} &#8457`
+        } else {
+            document.getElementById("current").innerHTML = `Current Temperature: ${temperatureInC} &#8451`
+        }
+      }
+
+      function changeTemperature() {
+        if (fC == true) {
+            fC = false;
+            document.getElementById("current").innerHTML = `Current Temperature: ${temperatureInF} &#8457`
+        } else {
+            fC = true;
+            document.getElementById("current").innerHTML = `Current Temperature: ${temperatureInC} &#8451`
+        }
+      }
+
+      function clockTick() {
+        var date = new Date();
+        if (militaryTime) {
+          var time =
+            date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        } else {
+          var hours = date.getHours();
+          var minutes = date.getMinutes();
+          var seconds = date.getSeconds();
+          var timeOfDay;
+
+          if (hours >= 12) {
+            timeOfDay = "pm";
+          } else {
+            timeOfDay = "am";
+          }
+          hours %= 12;
+
+          if (hours == 0) {
+            hours = 12;
+          }
+
+          if (minutes <= 10) {
+            minutes = "0" + minutes;
+          }
+
+          if (seconds <= 10) {
+            seconds = "0" + seconds;
+          }
+
+          var time = hours + ":" + minutes + ":" + seconds + " " + timeOfDay;
+        }
+        document.getElementById("clock").textContent = `Current Time: ${time}`;
+      }
+
+      function playStartUp() {
+        if(tvOn == false) {
+            var music = new Audio("../soundfiles/startup.mp3");
+            music.play();
+            document.getElementById("tv-box").innerHTML = '<img id=tv-image style="max-width: 95%; max-height: 100%; margin: 15px;" src="https://miro.medium.com/v2/resize:fit:1400/1*o2gkpBGae8k6-b4kStOWUw.jpeg">'
+            document.getElementById("tv-button").value = "Turn off TV"
+            tvOn = true;
+        } else {
+            document.getElementById("tv-box").innerHTML = " "
+            document.getElementById("tv-button").value = "Turn on TV"
+            tvOn = false;
+        }
+
+            
+      }
+
+      function pressButton(button) {
+        if (button == "youtube") {
+          document.getElementsByClassName(
+            "box"
+          )[0].innerHTML = `<div style="text-align:center; padding: 10px">
+              <h2 style="font-size: 50px;">Weather</h2>
+              <iframe width="85%" height="560" style="visibility:visible" src="https://abpwidget.accuweather.com/widget/abpwidget/index.html#abp_nocode_entra?ismetric=false&culture=en-us&cities=New%20York,NY;Los%20Angeles,CA;Chicago,IL;Houston,TX;Philadelphia,PA;Phoenix,AZ"></iframe>
+              </div>
+              <div style="text-align:center; padding: 10px">
+              <img id="home" onclick="goHome()" style="height: 80px; width: auto" src="https://cdn-icons-png.flaticon.com/512/25/25694.png">
+              </div>`;
+        } else if (button == "firefox") {
+          document.getElementsByClassName(
+            "box"
+          )[0].innerHTML = `<div style="text-align:center; padding: 10px">
+              <h2 style="font-size: 50px;">FireFox</h2>
+              <iframe width="100%" height="500" style="visibility:visible" src="https://www.bing.com/"></iframe>
+              </div>
+              <div style="text-align:center; padding: 10px">
+              <img id="home" onclick="goHome()" style="height: 80px; width: auto" src="https://cdn-icons-png.flaticon.com/512/25/25694.png">
+              </div>`;
+        } else if (button == "timer") {
+          document.getElementsByClassName(
+            "box"
+          )[0].innerHTML = `<div style="text-align:center; padding: 10px">
+              <h2 style="font-size: 50px;">Timer</h2>
+              <p id=number-text></p>
+              <input type="number" id="timer-number" name="timer" value="1" min="1" max="60">
+              <button type=button onclick=timer(1)>Click to Start Timer</button>
+              <div style="text-align:center; padding: 10px">
+              <img id="home" onclick="goHome()" style="height: 80px; width: auto" src="https://cdn-icons-png.flaticon.com/512/25/25694.png">
+              </div>`;
+        }
+        else if (button == "notepad") {
+          document.getElementsByClassName("box")[0].innerHTML = `<div>
+          <div style="text-align:center; padding: 10px">
+              <h2 style="font-size: 50px;">NotePad</h2>
+              <textarea style="max-width: 100%"id="padinfo" rows="4" cols="100">${note}</textarea>
+              <br>
+              <input onclick="saveNote()" type="submit" value="Save">
+              <input onclick="deleteNote()" type="submit" value="Delete All">
+              <div style="text-align:center; padding: 10px">
+              <img id="home" onclick="goHome()" style="height: 80px; width: auto" src="https://cdn-icons-png.flaticon.com/512/25/25694.png">
+              </div>`;
+        } else if (button == "power") {
+          if (power) {
+            document.getElementsByClassName("box")[0].innerHTML = `<img
+            id="power"
+            onclick="pressButton(this.id)"
+            style="margin-bottom: 10px"
+            src="https://cdn-icons-png.flaticon.com/512/92/92961.png"
+            />`;
+            document.getElementsByTagName("html")[0].style.backgroundColor =
+              "#413a44";
+            document.getElementsByClassName("box")[0].style.backgroundColor =
+              "#4a4343";
+            power = false;
+          } else {
+            document.getElementsByTagName("html")[0].style.backgroundColor =
+              "#dfbcf5";
+            document.getElementsByClassName("box")[0].style.backgroundColor =
+              "white";
+            power = true;
+            goHome();
+          }
+        } else if (button == "tv") {
+          document.getElementsByClassName(
+            "box"
+          )[0].innerHTML = `<div style="text-align:center; padding: 10px">
+              <h2 style="font-size: 50px;">TV</h2>
+                <div id="tv-box"></div>
+              </div>
+              <input id="tv-button" type="button" value="Turn on TV" onclick="playStartUp()" />
+              <div style="text-align:center; padding: 10px">
+              <img id="home" onclick="goHome()" style="height: 80px; width: auto" src="https://cdn-icons-png.flaticon.com/512/25/25694.png">
+              </div>`;
+        }
+      }
+
+      function saveNote() {
+        note = document.getElementById("padinfo").value;
+      }
+
+      function deleteNote() {
+        document.getElementById("padinfo").value = "Deleted Everything!";
+        note = "Write Your Groceries Here!";
+      }
+
+      function changeMilitary() {
+        clearInterval(clockTimer);
+        if (militaryTime) {
+          militaryTime = false;
+          clockTimer = setInterval(clockTick, 1000);
+        } else {
+          militaryTime = true;
+          clockTimer = setInterval(clockTick, 1000);
+        }
+      }
+
+      function foodBlur() {
+        if(food){
+            document.getElementById("food").style.filter = "Blur(0px)";
+            food = false;
+        } else {
+            document.getElementById("food").style.filter = "Blur(5px)";
+            food = true;
+        }
+      
+      }
+
+      function goHome() {
+        document.getElementsByClassName(
+          "box"
+        )[0].innerHTML = `<div onload="function(){startClock(); changeTemperature();}">
+          <img
+          id="snowflake"
+          src="data:image/png;base64,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"
+          />
+          <div id=temperature>
+            <button id=plus type=button onclick=increaseTemperature()>+</button>
+            <h2 id="current"></h2>
+            <button id=minus type=button onclick=decreaseTemperature()>-</button>
+            </div>
+          <h3 id="clock">Current Time: 00:00:00</h3>
+          <img id="food" style="filter: blur(5px);" src="https://www.foodandwine.com/thmb/J4By9T9p3HCb6Svl3b9qczg4ZpQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Nancy-Chef-Fridge-Lead-FT-Blog0520-377bd680d254402cb6dbc52f9413f32c.jpg">
+          </div>
+          <div class="box-container">
+          <div class="box-column">
+            <img id="power" onclick="pressButton(this.id)" src="https://static.vecteezy.com/system/resources/previews/004/924/688/original/power-icon-isolated-on-white-background-on-off-button-illustration-free-vector.jpg">
+          </div>
+          <div class="box-column">
+          <img id="firefox" onclick="pressButton(this.id)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/1200px-Firefox_logo%2C_2019.svg.png">
+          </div>
+          <div class="box-column">
+          <img id="youtube" onclick="pressButton(this.id)" src="https://www.creativefabrica.com/wp-content/uploads/2021/03/31/weather-icon-illustration03-Graphics-10205167-1.jpg">
+          </div>
+          <div class="box-column">
+          <img id="notepad" onclick="pressButton(this.id)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Icon-notepad.svg/1024px-Icon-notepad.svg.png">
+          </div>
+          <div class="box-column">
+          <img id="tv" onclick="pressButton(this.id)" src="https://static.vecteezy.com/system/resources/previews/000/582/064/original/tv-icon-vector-illustration.jpg">
+          </div>
+          <div class="box-column">
+          <img id="timer" onclick="pressButton(this.id)" src="data:image/png;base64,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">
+          </div>
+          </div>`;
+        changeTemperature();
+        document
+          .getElementById("clock")
+          .addEventListener("click", changeMilitary);
+        document.getElementById("food").addEventListener("click", foodBlur);
+        document.getElementById("current").addEventListener("click", changeTemperature)
+      }
+    </script>
+  </head>
+
+  <body onload="startClock()">
+    <h1>The Fridglietta</h1>
+    <embed src="./soundfiles/background.mp3" loop="true" volume=".1" autostart="true" width="2"
+         height="0">
+    <div class="main">
+      <div class="box">
+        <img
+          id="power"
+          onclick="pressButton(this.id)"
+          style="margin-bottom: 10px"
+          src="https://cdn-icons-png.flaticon.com/512/92/92961.png"
+        />
+      </div>
+    </div>
+  </body>
+  <footer>
+    <hr />
+    <small>© Maurizio Miglietta April 10, 2022</small>
+  </footer>
+</html>
