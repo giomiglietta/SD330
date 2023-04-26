@@ -1,0 +1,31 @@
+
+
+nav {
+    border-bottom: 2px dashed black;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+label {
+    font-size: 20px;
+}
+
+.crumbs ol {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.crumb {
+    display: inline-block;
+}
+
+.crumb a::after {
+    display: inline-block;
+    color: #000;
+    content: '>';
+    font-size: 80%;
+    font-weight: bold;
+    padding: 0 5px;
+}
