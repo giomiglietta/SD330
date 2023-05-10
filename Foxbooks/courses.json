@@ -1,0 +1,110 @@
+{
+    "Discrete Mathematics": {
+        "professor": "Malick Ndaiye",
+        "department": "MATH",
+        "course number": "205L",
+        "section": "112",
+        "books": [ {
+            "title": "Practical Discrete Mathematics",
+            "author": "Ryan T. White",
+            "isbn": "1838983147"
+          },
+          {
+            "title": "Discrete Mathematics with Applications",
+            "author": "Susanna Epp",
+            "isbn": "0357114086"
+          },
+          {
+            "title": "Discrete Mathematics: An Open Introduction",
+            "author": "Oscar Levin",
+            "isbn": "1792901690"
+          },
+          {
+            "title": "Introductory Discrete Mathematics",
+            "author": "V.K. Balakrishnan",
+            "isbn": "0486691152"
+          }
+         ]
+    },
+    "Calculus": {
+        "professor": "Joe Kirtland",
+        "department": "MATH",
+        "course number": "241L",
+        "section": "114",
+        "books": [ {
+            "title": "Essential Calculus",
+            "author": "Chris McMullen",
+            "isbn": "1941691242"
+          },
+          {
+            "title": "The Cartoon Guide to Calculus",
+            "author": "Larry Gonick",
+            "isbn": "0061689092"
+          },
+          {
+            "title": "Calculus: An Intuitive and Physical Approach",
+            "author": "Morris Kline",
+            "isbn": "9780486404530"
+          },
+          {
+            "title": "Calculus Made Easy",
+            "author": "Silvanus P. Thompson",
+            "isbn": "0312185480"
+          }
+         ]
+    },
+    "Intro to Cybersecurity": {
+        "professor": "Dominick Foti",
+        "department": "CMPT",
+        "course number": "416N",
+        "section": "111",
+        "books": [ {
+            "title": "The Weakest Link",
+            "author": "Arun Vishwanath",
+            "isbn": "1119892309"
+          },
+          {
+            "title": "Cybersecurity Essentials",
+            "author": "Charles J. Brooks",
+            "isbn": "0061689092"
+          },
+          {
+            "title": "Cybersecurity: The Beginner's Guide",
+            "author": "Dr. Erdal Ozkaya",
+            "isbn": "1789616190"
+          },
+          {
+            "title": "Linux for Beginners",
+            "author": "Darwin Growth",
+            "isbn": "0312185480"
+          }
+         ]
+    },
+    "System Design": {
+        "professor": "Andrew Tokash",
+        "department": "CMPT",
+        "course number": "330L",
+        "section": "111",
+        "books": [ {
+            "title": "Interaction Design",
+            "author": "Helen Sharp",
+            "isbn": "9781119547259"
+          },
+          {
+            "title": "Swipe to Unlock",
+            "author": "Neel Mehta",
+            "isbn": "1976182190"
+          },
+          {
+            "title": "UX for Beginners",
+            "author": "Joel Marsh",
+            "isbn": "1491912685"
+          },
+          {
+            "title": "The Design of Everyday Things",
+            "author": "Don Norman",
+            "isbn": "9780465050659"
+          }
+         ]
+    }
+}

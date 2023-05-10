@@ -1,0 +1,184 @@
+
+
+
+
+label {
+    font-size: 20px;
+}
+
+.crumbs ol {
+    list-style-type: none;
+    font-size: 20px;
+    padding-left: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.crumb {
+    display: inline-block;
+}
+
+.crumb a::after {
+    display: inline-block;
+    color: #000;
+    content: '>';
+    font-size: 80%;
+    font-weight: bold;
+    padding: 0 5px;
+}
+
+#fox {
+    font-size: 40px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgb(227, 24, 55);
+    color: #fff;
+    padding: 0px 20px 5px 20px;
+    box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.4);
+    
+}
+
+
+#breadHeader {
+    background-color: rgb(178, 178, 178);
+    padding-left: 20px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+}
+
+main {
+    display: flex;
+}
+
+.alignleft {
+    flex: 0 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.alignright {
+    flex: 0 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+html {
+    background-color: rgb(179, 179, 179);
+}
+
+.mainbox {
+    width: 1000px;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: rgb(218, 218, 218);
+}
+
+.welcome {
+    width: 850px;
+    height: 150px;
+    background-color: rgb(227, 24, 55);
+    border-radius: 25px;
+    margin: 0 auto;
+    box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.4);
+}
+
+.welcome2 {
+    width: 850px;
+    height: 150px;
+    background-color: rgb(227, 24, 55);
+    border-radius: 25px 25px 0px 0px;
+    margin: 0 auto;
+    box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.4);
+    position: relative
+}
+
+.white {
+    height: 550px;
+    width: 850px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px 25px 25px 25px;
+    margin: 75px auto;
+    text-align: center;
+    
+}
+
+.welcomeText {
+    color: white;
+    padding: 45px;
+    font-size: 55px;
+}
+
+.information {
+    margin: 10px;
+    font-size: 25px;
+}
+
+.courseBox {
+    width: 850px;
+    height: 195px;
+    background-color: white;
+    border-style: solid;
+    border-color: rgb(160, 150, 150);
+    border-width: 2px 0px 0px 0px;
+    font-size: 10px;
+    text-align: left;  
+}
+
+.courseBox2 {
+    width: 850px;
+    height: 195px;
+    background-color: rgb(230, 229, 229);
+    border-style: solid;
+    border-color: rgb(160, 150, 150);
+    border-width: 2px 0px 0px 0px;
+    font-size: 10px;
+    text-align: left;  
+}
+
+
+.courseBox h1, .courseBox2 h1 {
+    padding-left: 20px;
+    font-size: 30px;
+}
+
+.box-grid {
+    font-size: 25px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    width: 650px;
+    padding-left: 40px;
+}
+
+.box-grid-12 {
+    display: flex;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.box {
+    padding: 5px;
+}
+
+.bold {
+    font-weight: bold;
+    margin: 0px;
+}
+
+h1 {
+    margin: 10px 0px 10px 0px;
+}
